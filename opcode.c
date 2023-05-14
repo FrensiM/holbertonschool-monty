@@ -1,8 +1,8 @@
-#include <monty.h>
+#include "monty.h"
 /**
  *
  */
-void (*get_op(char *token[], unsigned int line))
+void (*get_op(char *token, unsigned int line))
 (stack_t **stack, unsigned int line_number)
 {
 	int i;
@@ -18,23 +18,21 @@ void (*get_op(char *token[], unsigned int line))
 	};
 	for (i = 0; op[i].opcode != NULL; i++)
 	{
-		if (strncmp(token[0], op[i].opcode) == 0)
-		{
+		if (strcmp(token, op[i].opcode) == 0)
+		
 			return (op[i].f);
-
+/*
 			if (token[1] == NULL)
 			{
 				fprintf(stderr, "L%i: usage: push integer\n", y);
-				exit(EXIT_FAILURE)
+				exit(EXIT_FAILURE);
 			}
-			*stack = push(stack, line_number, token[1]);
-			if (stack == NULL)
+			*stack_t = _push(stack, line_number, token[1]);
+			if (stack_t == NULL)
 				exit(EXIT_FAILURE);
 		}
-		else
-			op[i].f(stack, line_number)
-		break;
 	}
+*/
 	if (op[i].opcode == NULL)
 	{
 		fprintf(stderr, "L%i: unknown instruction %s\n", y, token_array[0]);

@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-#include <systype.h>
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -45,6 +44,11 @@ void _pop(stack_t **top, unsigned int line);
 void _swap(stack_t **top, unsigned int line);
 void _add(stack_t **top, unsigned int line);
 void _nop(stack_t **top, unsigned int line);
+void _free(stack_t *top);
+
+void (*get_op(char *token, unsigned int line))(stack_t **, unsigned int);
+void open_file(char **argv);
+int is_comment(char *token, unsigned int line);
 /*global variable */
 int data;
 #endif
