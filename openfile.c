@@ -1,5 +1,4 @@
 #include "monty.h"
-int num;
 /**
  * open_file - function that opens the file
  * @argv: argument value
@@ -16,7 +15,7 @@ void open_file(char **argv)
 
 	fp = fopen(argv[1], "r");
 	if (fp == NULL)
-		ferror(argv);
+		file_error(argv);
 	while ((line = getline(&buff, &length, fp)) != -1)
 	{
 		token = strtok(buff, "\n\t\r ");
@@ -29,7 +28,7 @@ void open_file(char **argv)
 		if (strcmp(token, "push") == 0)
 		{
 			token = strtok(NULL, "\n\t\r ");
-			num = atoi(token);
+			data = atoi(token);
 			p_func = get_op(command, line_counter);
 			p_func(&top, line_counter);
 		}

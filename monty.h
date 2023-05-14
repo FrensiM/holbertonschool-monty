@@ -46,9 +46,11 @@ void _add(stack_t **top, unsigned int line);
 void _nop(stack_t **top, unsigned int line);
 void _free(stack_t *top);
 
+void invalid_instruction(char *token, unsigned int line);
 void (*get_op(char *token, unsigned int line))(stack_t **, unsigned int);
 void open_file(char **argv);
 int is_comment(char *token, unsigned int line);
+void file_error(char **argv);
 /*global variable */
 int data;
 #endif
