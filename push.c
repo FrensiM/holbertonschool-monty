@@ -1,60 +1,44 @@
 #include "monty.h"
-
-/**
- * _push - insert a node at head of list
- * @top: where to insert
- * @line_number: line number error
- * @n: argument for push
- * Return: new head
- */
 void _push(stack_t **top, unsigned int line_number)
 {
-	stack_t *new;
-	char *data_str = strtok(NULL, " \n\t\r");
-	int is_nr = is_num(data_str);
+    char *line = NULL;
+    size_t len = 0;
+    ssize_t nread;
 
-	if (data_str == NULL || is_nr)
-	{
-		fprintf(stderr, "L%i: usage: push integer\n", line_number);
-		exit(EXIT_FAILURE);
-	}
-	new = malloc(sizeof(stack_t));
-	if (new == NULL)
-	{
-		fprintf(stderr, "can't allocate memory\n");
-		exit(EXIT_FAILURE);
-	}
-	new->n = data;
-	new->prev = NULL;
-	new->next = *top;
-	if (*top != NULL)
-		(*top)->prev = new;
-	*top = new;
+    nread = getline(&line, &len, stdin);
+
+    if (nread == -1)
+    {
+        fprintf(stderr, "L%i: usage: push integer\n", line_number);
+        exit(EXIT_FAILURE);
+    }
+
+    int value;
+    char *endptr;
+    value = strtol(line, &endptr, 10);
+
+    if (*endptr != '\n')
+    {
+        fprintf(stderr, "L%i: usage: push integer\n", line_number);
+        exit(EXIT_FAILURE);
+    }
+
+    stack_t *new_node = malloc(sizeof(stack_t));
+    if (new_node == NULL)
+    {
+        fprintf(stderr, "Error: malloc failed\n");
+        exit(EXIT_FAILURE);
+    }
+
+    new_node->n = value;
+    new_node->prev = NULL;
+    new_node->next = *top;
+
+    if (*top != NULL)
+        (*top)->prev = new_node;
+
+    *top = new_node;
+
+    free(line);
 }
 
-/**
- * is_num - checks if string contains a num
- * @n: string to check
- * Return: 0 if num, 1 if else
- */
-int is_num(char *n)
-{
-	int i = 0;
-
-	while (n[i] != '\0')
-	{
-		if (n[0] == '-')
-		{
-			i++;
-			continue;
-		}
-		if (n[0] == '\n')
-			return (1);
-		if (n[i] == '\n')
-			break;
-		if (n[i] < 48 || n[i] > 57)
-			return (1);
-		i++;
-	}
-	return (0);
-}
