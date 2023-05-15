@@ -28,11 +28,6 @@ void open_file(char **argv)
 		{
 			token = strtok(NULL, "\n\t\r ");
 			data = atoi(token);
-			if (token == NULL || !is_num(token))
-			{
-				fprintf(stderr, "L%i: usage: push integer\n", line_counter);
-				exit(EXIT_FAILURE);
-			}
 			p_func = get_op(command, line_counter);
 			p_func(&top, line_counter);
 		}
