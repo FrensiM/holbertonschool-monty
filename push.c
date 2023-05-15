@@ -1,25 +1,23 @@
 #include "monty.h"
 
 /**
- * push - insert a node at head of list
- * @stack: where to insert
+ * _push - insert a node at head of list
+ * @top: where to insert
  * @line_number: line number error
  * @n: argument for push
  * Return: new head
  */
-stack_t *push(stack_t **top, unsigned int line_number, char *n)
+void _push(stack_t **top, unsigned int line_number)
 {
 	stack_t *new;
-	int isNumber;
-	int data;
+	char *data_str = strtok(NULL, " \n\t\r");
+	int is_nr = is_num(data_str);
 
-	isNumber = is_num(n);
-	if (isNumber == 1)
+	if (data_str == NULL || is_nr)
 	{
 		fprintf(stderr, "L%i: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	data = atoi(n);
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 	{
@@ -32,7 +30,6 @@ stack_t *push(stack_t **top, unsigned int line_number, char *n)
 	if (*top != NULL)
 		(*top)->prev = new;
 	*top = new;
-	return (*top);
 }
 
 /**

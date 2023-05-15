@@ -35,9 +35,9 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
-stack_t *push(stack_t **top, unsigned int line_number, char *n);
+void _push(stack_t **top, unsigned int line_number);
 /* op func */
-void _push(stack_t **top, __attribute__((unused)) unsigned int line);
+/*void _push(stack_t **top, __attribute__((unused)) unsigned int line); */
 void _pall(stack_t **top, __attribute__((unused)) unsigned int line);
 void _pint(stack_t **top, unsigned int line);
 void _pop(stack_t **top, unsigned int line);
