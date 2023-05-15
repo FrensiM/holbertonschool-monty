@@ -5,7 +5,7 @@
  * @top: pointer
  * @line: line
  */
-void _push(stack_t **top, __attribute__((unused)) unsigned int line)
+void _push(stack_t **top, __attribute__((unused))unsigned int line)
 {
 	stack_t *new_Node = malloc(sizeof(stack_t));
 
@@ -14,6 +14,7 @@ void _push(stack_t **top, __attribute__((unused)) unsigned int line)
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
+
 	new_Node->n = data;
 	new_Node->prev = NULL;
 
@@ -29,6 +30,7 @@ void _push(stack_t **top, __attribute__((unused)) unsigned int line)
 		*top = new_Node;
 	}
 }
+
 /**
  * _pall - function that prints all elements in a doubly linked list
  * @top: pointer

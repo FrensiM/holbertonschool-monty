@@ -19,7 +19,6 @@ void open_file(char **argv)
 	while ((line = getline(&buff, &length, fp)) != -1)
 	{
 		token = strtok(buff, "\n\t\r ");
-
 		if (*token == '\0')
 			continue;
 		strcpy(command, token);
@@ -40,11 +39,16 @@ void open_file(char **argv)
 		line_counter++;
 	}
 	fclose(fp);
-
 	if (buff != NULL)
 		free(buff);
 	_free(top);
 }
+/**
+ * is_comment - func that find if it is coment
+ * @token: token
+ * @line: line nr
+ * Return: -1 or 1
+ */
 int is_comment(char *token, unsigned int line)
 {
 	if (token[0] == '#')
